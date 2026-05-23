@@ -13,7 +13,8 @@
     "react-dom": "^16.12.0",
     "react-fontawesome": "^1.7.1",
     "react-scripts": "3.2.0",
-    "reactstrap": "^8.1.1"
+    "reactstrap": "^8.1.1",
+    "three": "0.124.0"
   },
   "scripts": {
     "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
