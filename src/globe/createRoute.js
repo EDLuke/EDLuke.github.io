@@ -11,9 +11,16 @@ export function createRoute(options) {
   });
   geometry.setAttribute('aProgress', new THREE.BufferAttribute(progress, 1));
 
+  const trackMaterial = new THREE.LineBasicMaterial({
+    color: '#7cecff',
+    transparent: true,
+    opacity: 0,
+    blending: THREE.AdditiveBlending,
+  });
   const material = new THREE.ShaderMaterial({
     transparent: true,
     depthWrite: false,
+    blending: THREE.AdditiveBlending,
     uniforms: {
       uProgress: { value: 0 },
       uOpacity: { value: 0 },
@@ -43,14 +50,22 @@ export function createRoute(options) {
     `,
   });
 
-  const mesh = new THREE.Line(geometry, material);
-  mesh.name = 'resume-pin-route';
+  const track = new THREE.Line(geometry, trackMaterial);
+  track.name = 'resume-route-track';
+
+  const activeRoute = new THREE.Line(geometry, material);
+  activeRoute.name = 'resume-pin-route';
+
+  const group = new THREE.Group();
+  group.name = 'resume-route';
+  group.add(track, activeRoute);
 
   return {
-    mesh,
+    mesh: group,
     setProgress(progress, opacity) {
       material.uniforms.uProgress.value = clamp01(progress);
       material.uniforms.uOpacity.value = clamp01(opacity);
+      trackMaterial.opacity = clamp01(opacity) * 0.32;
     },
   };
 }

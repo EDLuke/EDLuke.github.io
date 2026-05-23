@@ -20,7 +20,7 @@ export function createMarkers() {
       }),
     );
     const halo = new THREE.Mesh(
-      new THREE.RingGeometry(0.045, 0.061, 28),
+      new THREE.RingGeometry(0.038, 0.05, 28),
       new THREE.MeshBasicMaterial({
         color: '#ffffff',
         side: THREE.DoubleSide,
@@ -40,16 +40,17 @@ export function createMarkers() {
 
   return {
     group,
-    setActive(index, visibility) {
+    setActive(index, visibility, time) {
       const opacity = Math.max(0, Math.min(1, visibility));
+      const pulse = 1 + Math.sin(time * 0.006) * 0.1;
       meshes.forEach((entry, i) => {
         const active = i === index;
-        const scale = active ? 2.15 : 1;
+        const scale = active ? 1.75 * pulse : 1;
         entry.mesh.scale.setScalar(scale);
-        entry.halo.scale.setScalar(active ? 2.35 : 1.2);
+        entry.halo.scale.setScalar(active ? 1.95 * pulse : 1.1);
         entry.mesh.material.color.copy(active ? ACTIVE_COLOR : BASE_COLOR);
         entry.mesh.material.opacity = opacity * (active ? 1 : 0.7);
-        entry.halo.material.opacity = opacity * (active ? 0.72 : 0.16);
+        entry.halo.material.opacity = opacity * (active ? 0.42 : 0.12);
       });
     },
   };

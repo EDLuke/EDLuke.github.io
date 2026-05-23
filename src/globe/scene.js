@@ -104,10 +104,12 @@ export function createScene(canvas, options) {
     camera.lookAt(0, 0, 0);
 
     stars.rotation.y += dt * 0.006;
+    globe.clouds.rotation.y += dt * 0.022;
+    globe.clouds.rotation.z = Math.sin(now * 0.00008) * 0.025;
     globe.scanline.rotation.y += dt * (0.04 + (1 - intro) * 0.1);
     globe.scanline.rotation.x = Math.sin(now * 0.00012) * 0.04;
     route.setProgress(journeyProgress, routeVisibility);
-    markers.setActive(activeIndex(journeyProgress, waypointParams), routeVisibility);
+    markers.setActive(activeIndex(journeyProgress, waypointParams), routeVisibility, now);
 
     renderer.render(scene, camera);
     raf = requestAnimationFrame(frame);

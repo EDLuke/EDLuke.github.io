@@ -5,7 +5,7 @@ export const GLOBE_RADIUS = 1;
 export const ROUTE_RADIUS = 1.025;
 export const MARKER_RADIUS = 1.04;
 export const COVER_CAMERA_DISTANCE = 4.65;
-export const ROUTE_CAMERA_DISTANCE = 2.32;
+export const ROUTE_CAMERA_DISTANCE = 2.78;
 
 export const WAYPOINTS = [
   {
