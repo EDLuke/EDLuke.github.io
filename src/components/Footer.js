@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container} from 'reactstrap';
-import { FontAwesomeIcon } from '../../node_modules/@fortawesome/react-fontawesome';
-import { faLinkedin, faGithub, faInstagram } from '../../node_modules/@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLinkedin, faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 class Footer extends React.Component {
     render() {
