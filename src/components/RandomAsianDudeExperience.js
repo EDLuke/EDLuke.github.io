@@ -100,7 +100,7 @@ function JourneyLayer({ activeWaypoint, activeWaypointIndex, progress, jumpTo })
   };
 
   return (
-    <section className="rad-journey-layer" style={style} aria-label="Absurd route">
+    <section className="rad-journey-layer" style={style} aria-label="Resume route">
       <div className="rad-route-card">
         <div className="rad-pin-meta">
           <span>{String(activeWaypointIndex + 1).padStart(2, '0')} / {WAYPOINTS.length}</span>
@@ -115,7 +115,7 @@ function JourneyLayer({ activeWaypoint, activeWaypointIndex, progress, jumpTo })
         <div className="rad-place">{activeWaypoint.place}</div>
       </div>
 
-      <div className="rad-pin-rail" aria-label="Jump to route pin">
+      <div className="rad-pin-rail" aria-label="Jump to resume stop">
         {WAYPOINTS.map((waypoint, index) => {
           const active = index === activeWaypointIndex;
           return (

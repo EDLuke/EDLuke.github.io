@@ -44,7 +44,7 @@ export function createRoute(options) {
   });
 
   const mesh = new THREE.Line(geometry, material);
-  mesh.name = 'absurd-pin-route';
+  mesh.name = 'resume-pin-route';
 
   return {
     mesh,

@@ -11,5 +11,6 @@ it('renders without crashing', () => {
   ReactDOM.render(<App />, div);
   expect(div.textContent).toContain('random asian dude 3000');
   expect(div.textContent).toContain('Buiilding');
+  expect(div.textContent).toContain('Lehigh University');
   ReactDOM.unmountComponentAtNode(div);
 });
