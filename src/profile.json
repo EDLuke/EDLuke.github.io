@@ -21,13 +21,13 @@
     ],
     "experiences": [
         {
-            "companyName": "Latch",
-            "logo": "https://cdn.theorg.com/fe5d7596-0881-4407-80e1-6efc4eb1a864_thumb.jpg",
-            "url": "https://www.latch.com/",
+            "companyName": "Door",
+            "logo": "https://cdn.prod.website-files.com/6838ad705264e74df1653563/6841d18102e771ab4508eb78_door-logo-symbol-only.svg",
+            "url": "https://door.com/",
             "roles": [
                 {
                     "title": "Software Developer",
-                    "description": "Developing the Latch Android App",
+                    "description": "Building everything you see at Door",
                     "startDate": "2019-09-30",
                     "currentJob": true,
                     "location": "New York, NY"

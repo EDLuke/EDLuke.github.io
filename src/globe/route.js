@@ -41,12 +41,12 @@ export const WAYPOINTS = [
     caption: 'Software Engineer II. Developed and launched the Saks Fifth Avenue Android app.',
   },
   {
-    id: 'latch-android',
-    name: 'Latch Android',
-    place: 'New York, NY',
+    id: 'door',
+    name: 'Door',
+    place: 'door.com',
     lat: 1.3521,
     lng: 103.8198,
-    caption: 'Software Developer building the Latch Android app and the daily machinery around it.',
+    caption: 'Building everything you see at Door.',
   },
   {
     id: 'buiilding-now',
