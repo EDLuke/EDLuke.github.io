@@ -105,6 +105,8 @@ function JourneyLayer({ activeWaypoint, activeWaypointIndex, progress, jumpTo })
         <div className="rad-pin-meta">
           <span>{String(activeWaypointIndex + 1).padStart(2, '0')} / {WAYPOINTS.length}</span>
           <span>
+            orbit
+            {' '}
             {formatCoordinate(activeWaypoint.lat, 'N', 'S')}
             {' '}
             {formatCoordinate(activeWaypoint.lng, 'E', 'W')}
