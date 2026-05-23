@@ -6,6 +6,11 @@ function seededRandom(seed) {
   return x - Math.floor(x);
 }
 
+function applySrgb(texture) {
+  texture.colorSpace = THREE.SRGBColorSpace;
+  return texture;
+}
+
 function drawLandBlob(ctx, points, color) {
   ctx.beginPath();
   points.forEach((point, index) => {
@@ -115,7 +120,7 @@ function makeGlobeTexture() {
   }
 
   const texture = new THREE.CanvasTexture(canvas);
-  texture.encoding = THREE.sRGBEncoding;
+  applySrgb(texture);
   texture.anisotropy = 8;
   return texture;
 }
@@ -149,7 +154,7 @@ function makeCloudTexture() {
   }
 
   const texture = new THREE.CanvasTexture(canvas);
-  texture.encoding = THREE.sRGBEncoding;
+  applySrgb(texture);
   texture.anisotropy = 8;
   return texture;
 }
