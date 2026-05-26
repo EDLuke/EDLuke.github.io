@@ -14,6 +14,11 @@ it('renders without crashing', () => {
   expect(div.textContent).toContain('posts13');
   expect(div.textContent).toContain('following1993');
   expect(div.textContent).toMatch(/followers\d{1,3}(,\d{3}){3}/);
+  expect(div.textContent).toContain('Star');
+  expect(div.textContent).not.toContain('hiding in the build logs');
+  expect(div.querySelector('.rad-follow-link').getAttribute('href')).toBe(
+    'https://github.com/EDLuke/EDLuke.github.io',
+  );
   expect(div.textContent).toContain('Lehigh University');
   ReactDOM.unmountComponentAtNode(div);
 });

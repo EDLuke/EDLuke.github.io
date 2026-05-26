@@ -231,7 +231,9 @@ a {
   box-shadow: none;
 }
 
-.rad-dock-actions button {
+.rad-dock-actions .rad-follow-link {
+  display: inline-grid;
+  place-items: center;
   min-width: 164px;
   height: 58px;
   color: #101827;
@@ -241,6 +243,13 @@ a {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
   font-size: 1.35rem;
   font-weight: 850;
+  text-decoration: none;
+}
+
+.rad-dock-actions .rad-follow-link:hover,
+.rad-dock-actions .rad-follow-link:focus {
+  color: #101827;
+  text-decoration: none;
 }
 
 .rad-socials {
@@ -453,7 +462,7 @@ a {
     justify-content: space-between;
   }
 
-  .rad-dock-actions button {
+  .rad-dock-actions .rad-follow-link {
     min-width: 136px;
     height: 46px;
     font-size: 1.05rem;
@@ -547,7 +556,7 @@ a {
     font-size: 0.92rem;
   }
 
-  .rad-dock-actions button {
+  .rad-dock-actions .rad-follow-link {
     min-width: 108px;
     height: 36px;
     border-radius: 6px;

@@ -11,6 +11,7 @@ import { activeIndex } from '../globe/visibility';
 const SCROLL_VH = 760;
 const JOURNEY_START = 0.27;
 const WAYPOINT_CENTERS = getWaypointParams();
+const REPO_URL = 'https://github.com/EDLuke/EDLuke.github.io';
 const WORLD_POPULATION_BASE = 8293254786;
 const WORLD_POPULATION_BASE_TIME = Date.UTC(2026, 4, 22, 12, 0, 0);
 const WORLD_POPULATION_GAIN_PER_SECOND = 2.25;
@@ -87,7 +88,6 @@ function CoverLayer({ progress }) {
         <p className="rad-cover-bio">
           random asian dude be everywhere, Buiilding since 1993
         </p>
-        <p className="rad-cover-link">hiding in the build logs - edluke.github.io</p>
       </div>
 
       <div className="rad-stat-dock" aria-label="Profile statistics">
@@ -110,7 +110,15 @@ function CoverLayer({ progress }) {
         </div>
         <div className="rad-dock-actions">
           <SocialLinks />
-          <button type="button">Follow</button>
+          <a
+            className="rad-follow-link"
+            href={REPO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Star this repository on GitHub"
+          >
+            Star
+          </a>
         </div>
       </div>
     </section>
