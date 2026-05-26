@@ -21,6 +21,7 @@ npm run build
 
 The favicon and app icons are generated from `src/assets/profile-pic.jpg`:
 
+- `public/profile-favicon.ico`
 - `public/favicon.ico`
 - `public/logo192.png`
 - `public/logo512.png`
@@ -30,6 +31,7 @@ Regenerate them after changing the profile image:
 ```sh
 magick src/assets/profile-pic.jpg -resize 192x192 public/logo192.png
 magick src/assets/profile-pic.jpg -resize 512x512 public/logo512.png
+magick src/assets/profile-pic.jpg -define icon:auto-resize=64,48,32,16 public/profile-favicon.ico
 magick src/assets/profile-pic.jpg -define icon:auto-resize=64,48,32,16 public/favicon.ico
 ```
 
