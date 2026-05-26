@@ -11,10 +11,31 @@ import { activeIndex } from '../globe/visibility';
 const SCROLL_VH = 760;
 const JOURNEY_START = 0.27;
 const WAYPOINT_CENTERS = getWaypointParams();
+const WORLD_POPULATION_BASE = 8293254786;
+const WORLD_POPULATION_BASE_TIME = Date.UTC(2026, 4, 22, 12, 0, 0);
+const WORLD_POPULATION_GAIN_PER_SECOND = 2.25;
 
 function formatCoordinate(value, positive, negative) {
   const direction = value >= 0 ? positive : negative;
   return `${Math.abs(value).toFixed(1)}deg ${direction}`;
+}
+
+function getWorldPopulationEstimate(now = Date.now()) {
+  const elapsedSeconds = Math.max(0, (now - WORLD_POPULATION_BASE_TIME) / 1000);
+  return Math.round(WORLD_POPULATION_BASE + elapsedSeconds * WORLD_POPULATION_GAIN_PER_SECOND);
+}
+
+function useWorldPopulation() {
+  const [population, setPopulation] = useState(() => getWorldPopulationEstimate());
+
+  useEffect(() => {
+    const tick = () => setPopulation(getWorldPopulationEstimate());
+    tick();
+    const timer = window.setInterval(tick, 1000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  return population.toLocaleString('en-US');
 }
 
 function StaticGlobe() {
@@ -44,6 +65,7 @@ function SocialLinks() {
 }
 
 function CoverLayer({ progress }) {
+  const worldPopulation = useWorldPopulation();
   const coverExit = smoothstep(0.05, 0.29, progress);
   const style = {
     opacity: 1 - coverExit,
@@ -71,15 +93,20 @@ function CoverLayer({ progress }) {
       <div className="rad-stat-dock" aria-label="Profile statistics">
         <div>
           <span>posts</span>
-          <strong>12</strong>
+          <strong>13</strong>
         </div>
         <div>
           <span>following</span>
-          <strong>2006</strong>
+          <strong>1993</strong>
         </div>
         <div>
           <span>followers</span>
-          <strong>7.046 billion</strong>
+          <strong
+            className="rad-population-count"
+            aria-label={`World population estimate ${worldPopulation}`}
+          >
+            {worldPopulation}
+          </strong>
         </div>
         <div className="rad-dock-actions">
           <SocialLinks />
