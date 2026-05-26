@@ -6,10 +6,15 @@ import { isWebGLAvailable, prefersReducedMotion, getQualityTier } from '../globe
 import { createScene } from '../globe/scene';
 import { clamp01, smoothstep } from '../globe/geo';
 import { WAYPOINTS, getWaypointParams } from '../globe/route';
-import { activeIndex } from '../globe/visibility';
+import {
+  JOURNEY_REVEAL_END,
+  JOURNEY_REVEAL_START,
+  activeIndex,
+  pageProgressFromRoute,
+  routeProgressFromPage,
+} from '../globe/visibility';
 
 const SCROLL_VH = 760;
-const JOURNEY_START = 0.27;
 const WAYPOINT_CENTERS = getWaypointParams();
 const REPO_URL = 'https://github.com/EDLuke/EDLuke.github.io';
 const WORLD_POPULATION_BASE = 8293254786;
@@ -126,8 +131,8 @@ function CoverLayer({ progress }) {
 }
 
 function JourneyLayer({ activeWaypoint, activeWaypointIndex, progress, jumpTo }) {
-  const journeyOpacity = smoothstep(0.25, 0.42, progress);
-  const routeProgress = clamp01((progress - JOURNEY_START) / (1 - JOURNEY_START));
+  const journeyOpacity = smoothstep(JOURNEY_REVEAL_START, JOURNEY_REVEAL_END, progress);
+  const routeProgress = routeProgressFromPage(progress);
   const style = {
     opacity: journeyOpacity,
     transform: `translate3d(0, ${18 * (1 - journeyOpacity)}px, 0)`,
@@ -181,7 +186,7 @@ export default function RandomAsianDudeExperience() {
   const sceneRef = useRef(null);
   const [progress, setProgress] = useState(0);
   const [useStatic] = useState(() => !isWebGLAvailable() || prefersReducedMotion());
-  const journeyProgress = clamp01((progress - JOURNEY_START) / (1 - JOURNEY_START));
+  const journeyProgress = routeProgressFromPage(progress);
   const activeWaypointIndex = activeIndex(journeyProgress, WAYPOINT_CENTERS);
   const activeWaypoint = WAYPOINTS[activeWaypointIndex];
 
@@ -268,7 +273,7 @@ export default function RandomAsianDudeExperience() {
   }, [useStatic]);
 
   const jumpTo = (index) => {
-    const center = (WAYPOINT_CENTERS[index] * (1 - JOURNEY_START)) + JOURNEY_START;
+    const center = pageProgressFromRoute(WAYPOINT_CENTERS[index]);
     const max = document.documentElement.scrollHeight - window.innerHeight;
     window.scrollTo({ top: center * max, behavior: 'smooth' });
   };

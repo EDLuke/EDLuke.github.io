@@ -9,7 +9,7 @@ import {
   getRouteCameraPosition,
   getWaypointParams,
 } from './route';
-import { activeIndex } from './visibility';
+import { activeIndex, routeProgressFromPage } from './visibility';
 import { clamp01, smoothstep } from './geo';
 
 const INTRO_END = 0.34;
@@ -91,7 +91,7 @@ export function createScene(canvas, options) {
     const pageProgress = clamp01(currentProgress);
     const intro = smoothstep(0.02, INTRO_END, pageProgress);
     const routeVisibility = smoothstep(0.25, 0.39, pageProgress);
-    const journeyProgress = clamp01((pageProgress - 0.27) / (1 - 0.27));
+    const journeyProgress = routeProgressFromPage(pageProgress);
 
     const coverCamera = getCoverCameraPosition();
     const routeCamera = getRouteCameraPosition(
